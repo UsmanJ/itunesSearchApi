@@ -1,0 +1,17 @@
+<div class="jumbotron">
+  <p class="lead">Search for a Song, Artist or an Album</p>
+  <input type="text" ng-model="searchTerm" ng-change="doSearch()" ng-model-options="{ updateOn: 'default blud', debounce: {'default': 500, 'blur': 0} }">
+  <p><a class="btn btn-lg btn-success" ng-click="doSearch()">Search!</span></a></p>
+
+  <p class="searchName" ng-show="searchTerm"> You have searched for {{ searchTerm }} </p>
+
+  <ul class="list-group">
+    <li ng-repeat="result in searchResult.results" ng-show="searchTerm">
+      <p>{{result.trackName}}</p>
+      <p>{{result.artistName}}</p>
+      <p>{{result.collectionName}}</p>
+    </li>
+  </ul>
+
+  <p class="nill" ng-show="noResults">Sorry, no results available</p>
+</div>
