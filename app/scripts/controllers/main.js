@@ -10,19 +10,17 @@
 
 
 angular.module('itunesSearchApiApp')
-  .controller('MainCtrl', ['Search', function (Search) {
+  .controller('MainCtrl', ['$scope', 'Search', function ($scope, Search) {
 
-    var self = this;
-
-    self.doSearch = function() {
-      if (self.searchTerm) {
-        Search.query(self.searchTerm)
+    $scope.doSearch = function(searchTerm) {
+      if ($scope.searchTerm) {
+        Search.query($scope.searchTerm)
           .then(function(response) {
-            self.searchResult = response.data;
-            console.log(response.data);
-            // if (response.data === null) {
-            //   var noResults = true;
-            // };
+            if (response.data.results.length < 1) {
+              var noResults = true;
+            } else {
+            $scope.searchResult = response.data;
+            }
         });
       }
     };

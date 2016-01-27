@@ -1,17 +1,21 @@
 <div class="jumbotron">
   <p class="lead">Search for a Song, Artist or an Album</p>
-  <input type="text" ng-model="searchTerm" ng-change="doSearch()" ng-model-options="{ updateOn: 'default blud', debounce: {'default': 500, 'blur': 0} }">
-  <p><a class="btn btn-lg btn-success" ng-click="doSearch()">Search!</span></a></p>
+  <input type="text" class="input" ng-model="searchTerm" ng-model-options="{ updateOn: 'default blud', debounce: {'default': 500, 'blur': 0} }">
+  <p><a class="btn btn-lg btn-success" ng-click="doSearch(searchTerm)">Search!</span></a></p>
 
-  <p class="searchName" ng-show="searchTerm"> You have searched for {{ searchTerm }} </p>
+  <!-- <p class="searchName" ng-show="searchTerm"> You have searched for {{ searchTerm }} </p> -->
 
-  <ul class="list-group">
-    <li ng-repeat="result in searchResult.results" ng-show="searchTerm">
-      <p>{{result.trackName}}</p>
-      <p>{{result.artistName}}</p>
-      <p>{{result.collectionName}}</p>
-    </li>
-  </ul>
+  <div class="results" ng-hide="noResults">
+    <ul class="list-group">
+      <li ng-repeat="result in searchResult.results" ng-show="searchTerm">
+        <div class="info">
+          <p class="track_name">Song Name: {{result.trackName}}</p>
+          <p class="artist_name">Artist Name: {{result.artistName}}</p>
+          <p class="collection_name">Album Name: {{result.collectionName}}</p>
+        </div>
+      </li>
+    </ul>
+  </div>
 
-  <p class="nill" ng-show="noResults">Sorry, no results available</p>
+  <p class="nill" ng-show="noResults" ng-model="noResults">Sorry, no results available</p>
 </div>

@@ -9,14 +9,11 @@ angular.module('itunesSearchApiApp')
           url: queryUrl,
           method: 'GET',
           params: {
-              'callback': 'JSON_CALLBACK',
-               'term': searchTerm
+               'term': searchTerm,
+               'country': 'US',
+               'limit': 10,
+               'callback': ''
             },
-            paramsSerializer: function(param) {
-              return param;
-            }
-          }).success(function (data) {
-                          console.log(data);
         });
       }
     };
