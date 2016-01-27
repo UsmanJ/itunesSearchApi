@@ -16,11 +16,16 @@ describe('The application', function () {
     };
 
     spyOn(Search, 'query').and.returnValue({success: success});
-      MainCtrl = $controller('MainCtrl', {
-        $scope: scope
-      });
+    MainCtrl = $controller('MainCtrl', {
+      $scope: scope
+    });
 
     }));
+
+    beforeEach(function(){
+      Search.query.and.returnValue({then: function(callback){callback( {data: favSong});
+      }});
+    });
 
     var array = [];
     var searchTerm = 'jack johnson';
@@ -36,13 +41,12 @@ describe('The application', function () {
 
     it('should result in songs which have the same name', function () {
       scope.doSearch(searchTerm);
-      expect(scope.searchResult.length).toEqual(1);
+      expect(scope.searchResult.results.length).toEqual(1);
     });
 
     it('should call to itunes to get list of songs', function () {
       scope.doSearch(searchTerm);
-      expect(Search.query).toHaveBeenCalled();
-      // expect(Search.query).toHaveBeenCalledWith(searchTerm)
+      expect(Search.query).toHaveBeenCalledWith(searchTerm);
     });
 
     it('should add a song to favourites if addFav is called', function () {

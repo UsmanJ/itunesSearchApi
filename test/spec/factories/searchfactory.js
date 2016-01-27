@@ -34,7 +34,6 @@ describe('Service: Search', function () {
   	  return [200, searchData];
   	});
     Search.query('jack johnson').success(function (data) {
-      console.log(data);
       expect(data.resultCount).toBe(searchData.resultCount);
       expect(data.results.length).toBe(searchData.results.length);
     });
