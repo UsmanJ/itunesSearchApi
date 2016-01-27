@@ -1,30 +1,27 @@
 'use strict';
 
-describe('The application', function () {
+describe('Service: Search', function () {
 
   beforeEach(module('itunesSearchApiApp'));
 
-  var MainCtrl,
-    scope,
-    Search;
+  var Search, $httpBackend;
 
-  beforeEach(inject(function ($controller, $rootScope, $injector) {
-    scope = $rootScope.$new();
-    Search = $injector.get('Search');
-    var success = function(func) {
-      return func({resultCount: 1});
-    };
+  beforeEach(inject(function ($injector) {
+  	$httpBackend   = $injector.get('$httpBackend');
+  	Search         = $injector.get('Search');
+  }));
 
-    spyOn(Search, 'query').and.returnValue({success: success});
-      MainCtrl = $controller('MainCtrl', {
-        $scope: scope
-      });
+  afterEach(function() {
+  	$httpBackend.verifyNoOutstandingExpectation();
+  	$httpBackend.verifyNoOutstandingRequest();
+  });
 
-    }));
+  it('should do something', function () {
+    expect(!!Search).toBe(true);
+  });
 
-    var array = [];
-    var searchTerm = 'jack johnson';
-    var favSong = {'resultCount': 10, 'results': [
+  it('should load the json', function() {
+  	var searchData = {'resultCount': 1, 'results': [
       {'wrapperType':'track', 'kind':'song', 'artistId':909253, 'collectionId':879273552, 'trackId':879273565, 'artistName':'Jack Johnson',
       'collectionName':'In Between Dreams', 'trackName':'Better Together', 'collectionCensoredName':'In Between Dreams', 'trackCensoredName':'Better Together',
       'artistViewUrl':'https://itunes.apple.com/us/artist/jack-johnson/id909253?uo=4', 'collectionViewUrl':'https://itunes.apple.com/us/album/better-together/id879273552?i=879273565&uo=4',
@@ -33,26 +30,15 @@ describe('The application', function () {
       'artworkUrl100':'http://is3.mzstatic.com/image/thumb/Music2/v4/a2/66/32/a2663205-663c-8301-eec7-57937c2d0878/source/100x100bb.jpg', 'collectionPrice':8.99, 'trackPrice':1.29, 'releaseDate':'2014-05-27T07:00:00Z', 'collectionExplicitness':'notExplicit',
       'trackExplicitness':'notExplicit', 'discCount':1, 'discNumber':1, 'trackCount':15, 'trackNumber':1, 'trackTimeMillis':207679, 'country':'USA', 'currency':'USD', 'primaryGenreName':'Rock', 'radioStationUrl':'https://itunes.apple.com/station/idra.879273565', 'isStreamable':true}
     ]};
-
-    it('should result in songs which have the same name', function () {
-      scope.doSearch(searchTerm);
-      expect(scope.searchResult.length).toEqual(1);
+  	$httpBackend.whenGET('https://itunes.apple.com/search?&callback=&country=US&term=jack+johnson').respond(function() {
+  	  return [200, searchData];
+  	});
+    Search.query('jack johnson').success(function (data) {
+      console.log(data);
+      expect(data.resultCount).toBe(searchData.resultCount);
+      expect(data.results.length).toBe(searchData.results.length);
     });
+    $httpBackend.flush();
+  });
 
-    it('should call to itunes to get list of songs', function () {
-      scope.doSearch(searchTerm);
-      expect(Search.query).toHaveBeenCalled();
-      // expect(Search.query).toHaveBeenCalledWith(searchTerm)
-    });
-
-    it('should add a song to favourites if addFav is called', function () {
-      scope.addFav(favSong);
-      expect(scope.favourites[0]).toEqual(favSong);
-    });
-
-    it('should delete from favourites if delFav is called', function () {
-      scope.addFav(favSong);
-      scope.delFav(array, 0);
-      expect(scope.favourites.length).toEqual(1);
-    });
 });

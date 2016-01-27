@@ -11,7 +11,6 @@ angular.module('itunesSearchApiApp')
           params: {
                'term': searchTerm,
                'country': 'US',
-               'limit': 10,
                'callback': ''
             },
         });

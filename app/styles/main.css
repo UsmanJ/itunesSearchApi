@@ -30,8 +30,37 @@ ul {
 
 .track_name {
   float: left;
+  margin-left: 10px;
+}
+
+.artistDiv {
+  margin-top: 25px;
+}
+
+.artist_name {
+  float: left;
+  margin-left: 10px;
+}
+
+.collectionDiv {
+  margin-top: 25px;
+}
+
+.collection_name {
+  margin-left: 10px;
+  float: left;
 }
 
 .info {
   border: 2px solid;
+  overflow: auto;
+  margin-bottom: 10px;
+}
+
+#favBtn {
+  float: right;
+}
+
+#delBtn {
+  float: right;
 }
