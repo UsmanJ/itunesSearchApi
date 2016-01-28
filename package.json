@@ -38,7 +38,7 @@
   },
   "scripts": {
     "postinstall": "bower install",
-    "postinstall": "grunt uglify",
+    "postinstall": "grunt",
     "test": "grunt test"
   }
 }
