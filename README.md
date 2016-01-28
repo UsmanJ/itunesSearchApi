@@ -23,7 +23,7 @@ Running `grunt test` will run the unit tests with karma.
 
 In order to run the protractor tests do the following:
 
-Run `grunt serve`
+Run `grunt serve`<br>
 Run `webdriver-manager start` in a new tab <br>
 Go to `http://127.0.0.1:4444/wd/hub` to create a session in either chrome or firefox<br>
 Run `protractor test/e2e/conf.js` in another new tab and this will run the protractor tests
