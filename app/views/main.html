@@ -1,5 +1,4 @@
 <div class="jumbotron">
-
   <p class="lead" ng-show="haveFav">Here is a list of your favourite songs...</p>
   <div ng-show="haveFav" class="favourites" ng-repeat="result in favourites">
     <div class="info">
@@ -34,10 +33,12 @@
           <div class="collectionDiv">
             <p class="collection_name">Album Name: {{result.collectionName}}</p>
           </div>
+          <div class="previewDiv">
+            <p><a class="btn btn-primary" id="previewBtn" ng-click="openLink(result)">Preview</span></a></p>
+          </div>
         </div>
       </li>
     </ul>
   </div>
-
   <p class="nill" ng-show="noResults" ng-model="noResults">Sorry, no results available.</p>
 </div>

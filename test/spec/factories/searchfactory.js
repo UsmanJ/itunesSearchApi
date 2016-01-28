@@ -30,7 +30,7 @@ describe('Service: Search', function () {
       'artworkUrl100':'http://is3.mzstatic.com/image/thumb/Music2/v4/a2/66/32/a2663205-663c-8301-eec7-57937c2d0878/source/100x100bb.jpg', 'collectionPrice':8.99, 'trackPrice':1.29, 'releaseDate':'2014-05-27T07:00:00Z', 'collectionExplicitness':'notExplicit',
       'trackExplicitness':'notExplicit', 'discCount':1, 'discNumber':1, 'trackCount':15, 'trackNumber':1, 'trackTimeMillis':207679, 'country':'USA', 'currency':'USD', 'primaryGenreName':'Rock', 'radioStationUrl':'https://itunes.apple.com/station/idra.879273565', 'isStreamable':true}
     ]};
-  	$httpBackend.whenGET('https://itunes.apple.com/search?&callback=&country=US&term=jack+johnson').respond(function() {
+  	$httpBackend.whenGET('https://itunes.apple.com/search?&callback=&country=GB&term=jack+johnson').respond(function() {
   	  return [200, searchData];
   	});
     Search.query('jack johnson').success(function (data) {

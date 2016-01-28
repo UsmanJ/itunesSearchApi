@@ -10,7 +10,7 @@
 
 
 angular.module('itunesSearchApiApp')
-  .controller('MainCtrl', ['$scope', 'Search', function ($scope, Search) {
+  .controller('MainCtrl', ['$scope', 'Search', '$window', function ($scope, Search, $window) {
 
     $scope.favourites = [];
     $scope.haveFav = false;
@@ -26,6 +26,10 @@ angular.module('itunesSearchApiApp')
           $scope.noResults = false;
           }
       });
+    };
+
+    $scope.openLink = function(result) {
+      $window.open(result.previewUrl);
     };
 
     $scope.addFav = function(result) {

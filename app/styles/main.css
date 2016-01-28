@@ -64,3 +64,13 @@ ul {
 #delBtn {
   float: right;
 }
+
+.previewDiv {
+  margin-top: -60px;
+  margin-left: 425px;
+}
+
+#previewBtn {
+  font-size: 16px !important;
+  padding: 10px 15px !important;
+}

@@ -59,4 +59,14 @@ describe('The application', function () {
       scope.delFav(array, 0);
       expect(scope.favourites.length).toEqual(1);
     });
+
+    it( 'should test window open event', inject( function( $window ) {
+        spyOn( $window, 'open' ).and.callFake( function() {
+            return true;
+        } );
+        scope.doSearch(searchTerm);
+        scope.openLink(favSong.results[0]);
+        expect( $window.open ).toHaveBeenCalled();
+        expect( $window.open ).toHaveBeenCalledWith( 'http://a898.phobos.apple.com/us/r1000/039/Music6/v4/13/22/67/1322678b-e40d-fb4d-8d9b-3268fe03b000/mzaf_8818596367816221008.plus.aac.p.m4a' );
+    } ) );
 });

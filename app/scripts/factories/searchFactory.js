@@ -10,7 +10,7 @@ angular.module('itunesSearchApiApp')
           method: 'GET',
           params: {
                'term': searchTerm,
-               'country': 'US',
+               'country': 'GB',
                'callback': ''
             },
         });
