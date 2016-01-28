@@ -10,8 +10,21 @@ This application was built using JavaScript and the AngularJS framework.
 
 ## Build & development
 
-Run `grunt` for building and `grunt serve` for preview.
+After cloning the repo, go into the root folder of the project and:
+
+Run 'bower install'
+Run 'npm install'
+Run `grunt`
+
+Run `grunt serve` to view the application
 
 ## Testing
 
 Running `grunt test` will run the unit tests with karma.
+
+In order to run the protractor tests do the following:
+
+Run 'grunt serve'
+Run 'webdriver-manager start' in a new tab
+Go to 'http://127.0.0.1:4444/wd/hub' to create a session in either chrome or firefox
+Run 'protractor test/e2e/conf.js' in another new tab and this will run the protractor tests
