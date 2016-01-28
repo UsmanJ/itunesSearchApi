@@ -12,7 +12,6 @@ This application was built using JavaScript and the AngularJS framework.
 
 After cloning the repo, go into the root folder of the project and:
 
-Run 'bower install'
 Run 'npm install'
 Run `grunt`
 
