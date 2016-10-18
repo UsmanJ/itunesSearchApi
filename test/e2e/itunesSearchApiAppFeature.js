@@ -17,6 +17,12 @@ describe('itunes search api application', function() {
     expect(element(by.className('results')).isDisplayed()).toBeTruthy();
   });
 
+  it('displays an error message when no results are available', function() {
+    searchBtn.click();
+    browser.waitForAngular();
+    expect(element(by.className('nill')).isDisplayed()).toBeTruthy();
+  });
+
   it('has navigation bar with two buttons', function() {
     var buttonCount = element.all(by.css('.navbar-nav li')).count();
     expect(buttonCount).toBe(2);
