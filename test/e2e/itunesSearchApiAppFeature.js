@@ -16,4 +16,9 @@ describe('itunes search api application', function() {
     searchBtn.click();
     expect(element(by.className('results')).isDisplayed()).toBeTruthy();
   });
+
+  it('has navigation bar with two buttons', function() {
+    var buttonCount = element.all(by.css('.navbar-nav li')).count();
+    expect(buttonCount).toBe(2);
+  });
 });
