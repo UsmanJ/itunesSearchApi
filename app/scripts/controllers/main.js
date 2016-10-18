@@ -18,7 +18,7 @@ angular.module('itunesSearchApiApp')
     $scope.doSearch = function(searchTerm) {
       Search.query(searchTerm)
         .then(function(response) {
-          var numberOfResults = response.data.results.length
+          var numberOfResults = response.data.results.length;
           if (numberOfResults < 1) {
             $scope.noResults = true;
           } else {
@@ -40,7 +40,7 @@ angular.module('itunesSearchApiApp')
         var i;
         var alreadyExists = false;
         for (i = 0; i < $scope.favourites.length; i++) {
-          var favouriteTrackId =  $scope.favourites[i].trackId
+          var favouriteTrackId =  $scope.favourites[i].trackId;
           if ( favouriteTrackId === result.trackId) {
             alreadyExists = true;
             break;
